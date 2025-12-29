@@ -35,8 +35,12 @@ class JsonDB:
 
         self.write_pending: bool = False
         self._data: dict = {}
-        self.file: str = file
         self.closed: bool = False
+
+        if not file.endswith(".json"):
+            file = f"{file}.json"
+
+        self.file: str = file
         self.log = lambda text: log.info(f"[Config: {self.file}] {text}")
 
         JsonDB.active_config.append(file)
