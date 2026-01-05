@@ -18,7 +18,7 @@ import atexit
 import json
 import logging
 import time
-
+from os import PathLike
 from pathlib import Path
 
 from jsondb._lockfile_util import is_lock_file_exist, remove_lock_file, write_lock_file
@@ -29,7 +29,7 @@ log: logging.Logger = logging.getLogger(__name__)
 class JsonDB:
     active_config: list[str] = []
 
-    def __init__(self, file: str):
+    def __init__(self, file: str, path: str | PathLike):
         if file in JsonDB.active_config:
             raise ValueError("The config file is already opened by another instance!")
 
@@ -40,7 +40,7 @@ class JsonDB:
         if not file.endswith(".json"):
             file = f"{file}.json"
 
-        self.file: str = file
+        self.file: str = Path(path).joinpath(file).as_posix()
         self.log = lambda text: log.info(f"[Config: {self.file}] {text}")
 
         JsonDB.active_config.append(file)
