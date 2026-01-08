@@ -1,6 +1,6 @@
 [project]
 name = "jsondb-hakimifr"
-version = "0.3.0"
+version = "0.3.1"
 description = "Imagine using JSON as database. Wait... that's me!"
 readme = "README.md"
 license = { text = "Apache-2.0" }
