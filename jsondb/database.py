@@ -43,7 +43,7 @@ class JsonDB:
         self.file: str = Path(path).joinpath(file).as_posix()
         self.log = lambda text: log.info(f"[Config: {self.file}] {text}")
 
-        JsonDB.active_config.append(file)
+        JsonDB.active_config.append(self.file)
 
         # Automatically load config from file if exist
         if Path(self.file).exists() and Path(self.file).is_file():
