@@ -101,8 +101,8 @@ class JsonDB:
     def data(self) -> dict:
         return self._data
 
-    @_ensure_open
     @data.setter
+    @_ensure_open
     def data(self, value) -> None:
         self._data = value
         self.write_pending = True
