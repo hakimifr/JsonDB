@@ -113,4 +113,5 @@ class JsonDB:
         self.write_pending = False
         remove_lock_file(Path(self.file))
         JsonDB.active_config.remove(self.file)
+        del self._data
         self.closed = True
